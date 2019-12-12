@@ -1,5 +1,5 @@
 <?php
-function insert_into_blackwidow($server, $content){
+function insert_into_blackwidow($ip, $server){
     $con = mysqli_connect("den1.mysql2.gear.host", "blackwidow", "natasha.");
     if(!$con){
         die("Couldn't connect mySQL : " . mysqli_error($con));
@@ -19,8 +19,8 @@ function insert_into_blackwidow($server, $content){
             id bigint(100) PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'auto_increment id index',
             create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             update_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            server TEXT,
-            content varchar(1000)
+            ip varchar(15),
+            server TEXT
         );";
         #echo $create_table_sql."<br>";
         if(mysqli_query($con, $create_table_sql)){
@@ -30,7 +30,7 @@ function insert_into_blackwidow($server, $content){
     }
     unset($table_name, $result);
 
-    $insert_table_sql = "INSERT INTO login_log(server, content) VALUES('" . $server . "', '" . $content . "');";
+    $insert_table_sql = "INSERT INTO login_log(ip, server) VALUES('" . $ip . "', '" . $server . "');";
     #echo $insert_table_sql."<br>";
     mysqli_query($con, $insert_table_sql) or die("Error : " . mysqli_error($con));
     echo("insert into table success!<br>");
