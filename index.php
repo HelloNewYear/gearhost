@@ -43,7 +43,7 @@
 
         include_once("getIP.php");
         $ip = getIP();
-        echo "Your IP: " . $ip;
+        echo "Your IP: " . $ip . "<br>";
         require_once("connect_mysql.php");
         insert_into_blackwidow($ip, json_encode($_SERVER));
     ?>
