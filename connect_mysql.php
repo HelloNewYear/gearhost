@@ -30,7 +30,7 @@ function insert_into_blackwidow($ip, $server){
     }
     unset($table_name, $result);
 
-    $insert_table_sql = "INSERT INTO login_log(ip, server) VALUES('" . $ip . "', '" . $server . "');";
+    $insert_table_sql = "INSERT INTO " . $table_name . "(ip, server) VALUES('" . $ip . "', '" . $server . "');";
     #echo $insert_table_sql."<br>";
     mysqli_query($con, $insert_table_sql) or die("Error : " . mysqli_error($con));
     echo("insert into table success!<br>");
