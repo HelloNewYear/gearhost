@@ -17,6 +17,5 @@ else
 }
 preg_match("/[\d\.]{7,15}/", $cip, $cips);
 $cip = isset($cips[0]) ? $cips[0] : 'unknown';
-unset($cips);
 echo $cip;
-return $cip;
+unset($cips, $cip);
