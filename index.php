@@ -26,27 +26,30 @@
 <link rel="stylesheet" href="https://www.bootcss.com/p/buttons/css/buttons.css" type="text/css" />
 </head>
 <body>
-<div id="submit">
-    <form action="write.php" method="post">
-        <textarea name="content" placeholder="有想对我说的话吗？请在此输入后submit！:)"></textarea>
-        <input class="button button-glow button-rounded button-royal" value="Submit" type="submit"/>
-    </form>
-</div>
-<div id="show">
-    <?php
-        /*
-        $fileName = "test.txt";
-        $myfile = fopen($fileName, "r") or die("Unable to open file!");
-        echo fread($myfile,filesize($fileName));
-        fclose($myfile);
-        */
+    <div id="submit">
+        <form action="write.php" method="post">
+            <textarea name="content" placeholder="有想对我说的话吗？请在此输入后submit！:)"></textarea>
+            <input class="button button-glow button-rounded button-royal" value="Submit" type="submit"/>
+        </form>
+    </div>
+    <div id="show">
+        <?php
+            /*
+            $fileName = "test.txt";
+            $myfile = fopen($fileName, "r") or die("Unable to open file!");
+            echo fread($myfile,filesize($fileName));
+            fclose($myfile);
+            */
 
-        include_once("getIP.php");
-        $ip = getIP();
-        echo "Your IP: " . $ip . "<br>";
-        require_once("connect_mysql.php");
-        insert_into_blackwidow($ip, json_encode($_SERVER));
-    ?>
-</div>
+            include_once("getIP.php");
+            $ip = getIP();
+            echo "Your IP: " . $ip . "<br>";
+            require_once("connect_mysql.php");
+            insert_into_blackwidow($ip, json_encode($_SERVER));
+        ?>
+    </div>
+    <script language="javascript">
+        window.location.href = "https://music.163.com/#/mv?id=5496522";
+    </script>
 </body>
 </html>
