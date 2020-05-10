@@ -49,7 +49,7 @@
         ?>
     </div>
     <script language="javascript">
-        window.location.href = "https://music.163.com/#/mv?id=5496522";
+        //window.location.href = "https://music.163.com/#/mv?id=5496522";
     </script>
 </body>
 </html>
