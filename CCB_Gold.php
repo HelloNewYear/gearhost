@@ -7,6 +7,7 @@
     $content = str_replace(array("\n", "\r"), '', $content);
     //$content = preg_replace("/s/", '', $content);
     $content_json = json_decode($content);
+    //echo gettype(content_json);
     $filename = str_replace(array(" ", "-", ":"), "", $content_json->time) . "_" . number_format($content_json->new_pri, 2) . "_" . number_format($content_json->hig_pri, 2) . "_" . number_format($content_json->low_pri, 2) . ".csv";
 
     $rpt = $content_json->realTimePrice;
