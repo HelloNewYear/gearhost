@@ -12,21 +12,22 @@ function insert_into_blackwidow($ip, $server){
     echo("connect blackwidow success!<br>");
 
     $table_name = "access_log";
-    $create_table_sql = "CREATE TABLE " . $table_name . "(
-        id bigint(100) PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'auto_increment id index',
-        create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        update_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        ip varchar(15),
-        server TEXT
-    );";
-    #echo $create_table_sql."<br>";
     $result = mysqli_query($con, "SHOW TABLES LIKE '" . $table_name . "';");
     if(mysqli_num_rows($result)==0){
+        $create_table_sql = "CREATE TABLE " . $table_name . "(
+            id bigint(100) PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'auto_increment id index',
+            create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            update_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            ip varchar(15),
+            server TEXT
+        );";
+        #echo $create_table_sql."<br>";
         if(mysqli_query($con, $create_table_sql)){
             echo("create table success!<br>");
+            unset($create_table_sql);
         }
     }
-    unset($create_table_sql, $result);
+    unset($result);
 
     $insert_table_sql = "INSERT INTO " . $table_name . "(ip, server) VALUES('" . $ip . "', '" . $server . "');";
     #echo $insert_table_sql."<br>";
