@@ -8,7 +8,7 @@
     //$content = preg_replace("/s/", '', $content);
     $content_json = json_decode($content);
     //echo gettype(content_json);
-    $filename = str_replace(array(" ", "-", ":"), "", $content_json->time) . "_" . number_format($content_json->new_pri, 2) . "_" . number_format($content_json->hig_pri, 2) . "_" . number_format($content_json->low_pri, 2) . ".csv";
+    $filename = str_replace(array(" ", "-", ":"), "", $content_json->time) . "_" . number_format($content_json->new_pri, 2) . "_" . number_format($content_json->hig_pri, 2) . "_" . number_format($content_json->low_pri, 2) . ".csv.txt";
 
     $rpt = $content_json->realTimePrice;
     $rpt_json = json_decode($rpt);
@@ -23,3 +23,17 @@
     fclose($file);
 
     $ch = curl_init();
+    $post_data = array (
+        "upload" => $filename
+    );
+    $destination = "http://localhost/test/curl/curl_post.php";
+    curl_setopt($ch, CURLOPT_URL, $destination);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);//执行结果是否被返回，0是返回，1是不返回
+    curl_setopt($ch, CURLOPT_HEADER, 0);//参数设置，是否显示头部信息，1为显示，0为不显示
+    curl_setopt($ch, CURLOPT_REFERER, "http://www.baidu.com");//伪造网页来源地址,伪造来自百度的表单提交
+    curl_setopt($ch, CURLOPT_POST, 1);//表单数据，是正规的表单设置值为非0
+    curl_setopt($ch, CURLOPT_TIMEOUT, 1);//设置curl执行超时时间最大是多少
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+    curl_exec($ch);
+    curl_close($ch);//释放cURL句柄
