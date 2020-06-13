@@ -26,7 +26,7 @@
     $post_data = array (
         "upload" => $filename
     );
-    $destination = "http://localhost/test/curl/curl_post.php";
+    $destination = "https://dav.jianguoyun.com/dav/CCB/";
     curl_setopt($ch, CURLOPT_URL, $destination);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);//执行结果是否被返回，0是返回，1是不返回
     curl_setopt($ch, CURLOPT_HEADER, 0);//参数设置，是否显示头部信息，1为显示，0为不显示
