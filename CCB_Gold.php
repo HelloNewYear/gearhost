@@ -35,5 +35,6 @@
     curl_setopt($ch, CURLOPT_TIMEOUT, 1);//设置curl执行超时时间最大是多少
     curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+    curl_setopt($ch, CURLOPT_USERPWD, '1845077889@qq.com:atkacpyme2e3viub');
     curl_exec($ch);
     curl_close($ch);//释放cURL句柄
