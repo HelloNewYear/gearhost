@@ -22,6 +22,7 @@
     fwrite($file, $s);
     fclose($file);
 
+    echo 'a';
     $ch = curl_init();
     $post_data = array (
         "upload" => $filename
@@ -36,5 +37,7 @@
     curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
     curl_setopt($ch, CURLOPT_USERPWD, '1845077889@qq.com:atkacpyme2e3viub');
+    echo 'b';
     curl_exec($ch);
+    echo 'c';
     curl_close($ch);//释放cURL句柄
