@@ -7,7 +7,7 @@
     $content = str_replace(array("\n", "\r"), '', $content);//$content = preg_replace("/s/", '', $content);
     $content_json = json_decode($content);
     $rtp = $content_json->realTimePrice;
-    if(empty($rtp)) die("Closed");
+    if(is_null($rtp)) die("Closed");
     $rtp_json = json_decode($rtp);
     $s = "time,new_pri,valueB,valueS,CURR_COD,price_chg\n";
     $l = count($rtp_json);
@@ -20,7 +20,7 @@
     fwrite($file, $s);
     fclose($file);
 
-    /**
+    /*
     $ch = curl_init();
     $post_data = array (
         "upload" => $filename
@@ -37,4 +37,4 @@
     curl_setopt($ch, CURLOPT_USERPWD, '1845077889@qq.com:atkacpyme2e3viub');
     curl_exec($ch);
     curl_close($ch);//释放cURL句柄
-    **/
+    */
