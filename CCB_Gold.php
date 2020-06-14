@@ -4,24 +4,23 @@
     header("Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
     $content = file_get_contents($url);
 
-    $content = str_replace(array("\n", "\r"), '', $content);
-    //$content = preg_replace("/s/", '', $content);
+    $content = str_replace(array("\n", "\r"), '', $content);//$content = preg_replace("/s/", '', $content);
     $content_json = json_decode($content);
+    $rtp = $content_json->realTimePrice;
+    if(empty($rtp)) die("Closed");
+    $rtp_json = json_decode($rtp);
+    $s = "time,new_pri,valueB,valueS,CURR_COD,price_chg\n";
+    $l = count($rtp_json);
+    for($i=0; $i<$l; $i++){
+        $s = $s . str_replace(",", "", $rtp_json[$i]->time) . "," . number_format($rtp_json[$i]->new_pri, 2) . "," . number_format($rtp_json[$i]->valueB, 2) . "," .  number_format($rtp_json[$i]->valueS, 2) . "," . $rtp_json[$i]->CURR_COD . "," . number_format($rtp_json[$i]->price_chg, 2) . "\n";
+    }
     //echo gettype(content_json);
     $filename = str_replace(array(" ", "-", ":"), "", $content_json->time) . "_" . number_format($content_json->new_pri, 2) . "_" . number_format($content_json->hig_pri, 2) . "_" . number_format($content_json->low_pri, 2) . ".csv.txt";
-
-    $rpt = $content_json->realTimePrice;
-    $rpt_json = json_decode($rpt);
-    $s = "time,new_pri,valueB,valueS,CURR_COD,price_chg\n";
-    $l = count($rpt_json);
-    for($i=0; $i<$l; $i++){
-        $s = $s . str_replace(",", "", $rpt_json[$i]->time) . "," . number_format($rpt_json[$i]->new_pri, 2) . "," . number_format($rpt_json[$i]->valueB, 2) . "," .  number_format($rpt_json[$i]->valueS, 2) . "," . $rpt_json[$i]->CURR_COD . "," . number_format($rpt_json[$i]->price_chg, 2) . "\n";
-    }
-
     $file = fopen($filename, "w") or die("Unable to open file!");
     fwrite($file, $s);
     fclose($file);
 
+    /**
     $ch = curl_init();
     $post_data = array (
         "upload" => $filename
@@ -38,3 +37,4 @@
     curl_setopt($ch, CURLOPT_USERPWD, '1845077889@qq.com:atkacpyme2e3viub');
     curl_exec($ch);
     curl_close($ch);//释放cURL句柄
+    **/
