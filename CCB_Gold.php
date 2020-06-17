@@ -15,7 +15,8 @@
         $s = $s . str_replace(",", "", $rtp_json[$i]->time) . "," . number_format($rtp_json[$i]->new_pri, 2) . "," . number_format($rtp_json[$i]->valueB, 2) . "," .  number_format($rtp_json[$i]->valueS, 2) . "," . $rtp_json[$i]->CURR_COD . "," . number_format($rtp_json[$i]->price_chg, 2) . "\n";
     }
     //echo gettype(content_json);
-    $filename = str_replace(array(" ", "-", ":"), "", $content_json->time) . "_" . number_format($content_json->new_pri, 2) . "_" . number_format($content_json->hig_pri, 2) . "_" . number_format($content_json->low_pri, 2) . ".csv.txt";
+    is_dir("./CCB") or mkdir("CCB");
+    $filename = "./CCB/" . str_replace(array(" ", "-", ":"), "", $content_json->time) . "_" . number_format($content_json->new_pri, 2) . "_" . number_format($content_json->hig_pri, 2) . "_" . number_format($content_json->low_pri, 2) . ".csv.txt";
     $file = fopen($filename, "w") or die("Unable to open file!");
     fwrite($file, $s);
     fclose($file);
