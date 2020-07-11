@@ -1,8 +1,14 @@
 <?php
     $url = "http://tool.ccb.com/webtran/static/trendchart/getAccountData.gsp?dateType=timeSharing&sec_code=019999";
-    header("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36");
-    header("Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
-    $content = file_get_contents($url);
+    $UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36";
+    $AC = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
+    $opt = array("http"=>array(
+        "method"=>"GET",
+        "header"=>array("User-Agent:".$UA, "Accept:".$AC)
+        )
+    );
+    $context = stream_context_create($opt);
+    $content = file_get_contents($url, false, $context);
 
     $content = str_replace(array("\n", "\r"), '', $content);//$content = preg_replace("/s/", '', $content);
     $content_json = json_decode($content);
