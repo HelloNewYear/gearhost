@@ -40,12 +40,7 @@
             echo fread($myfile,filesize($fileName));
             fclose($myfile);
             */
-
-            include_once("getIP.php");
-            $ip = getIP();
-            echo "Your IP: " . $ip . "<br>";
-            require_once("connect_mysql.php");
-            insert_into_blackwidow($ip, json_encode($_SERVER));
+            include_once("ip.php");
         ?>
     </div>
     <script language="javascript">
