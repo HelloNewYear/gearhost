@@ -1,9 +1,10 @@
 <?php
     //connect server
     $con = mysqli_connect("den1.mysql3.gear.host", "blackwidow", base64_decode("bmF0YXNoYS4="));
-/*
+    echo "ok1";
     if(!$con){die("Couldn't connect mySQL : " . mysqli_error($con));}
 
+/*
     //connect database
     $database_name = "blackwidow";
     mysqli_select_db($con, $database_name;) or die("Can't use blackwidow : " . mysqli_error($con));
