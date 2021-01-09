@@ -18,8 +18,4 @@ else
 preg_match("/[\d\.]{7,15}/", $cip, $cips);
 $cip = isset($cips[0]) ? $cips[0] : 'unknown';
 echo $cip;
-
-require_once("connect_mysql.php");
-insert_into_blackwidow($cip, json_encode($_SERVER));
-
 unset($cips, $cip);
