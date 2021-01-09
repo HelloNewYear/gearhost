@@ -1,14 +1,15 @@
 <?php
     //connect server
     $con = mysqli_connect("den1.mysql3.gear.host", "blackwidow", base64_decode("bmF0YXNoYS4="));
-    echo "ok1";
     if(!$con){die("Couldn't connect mySQL : " . mysqli_error($con));}
+    echo "ok2";
 
-/*
     //connect database
     $database_name = "blackwidow";
     mysqli_select_db($con, $database_name;) or die("Can't use blackwidow : " . mysqli_error($con));
+    echo "ok3";
 
+/*
     $table_name = "access_log";
     $result = mysqli_query($con, "SHOW TABLES LIKE '" . $table_name . "';");
     if(mysqli_num_rows($result)==0){
