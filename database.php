@@ -6,7 +6,7 @@
 
     //connect database
     $database_name = "blackwidow";
-    mysqli_select_db($con, $database_name;) or die("Can't use blackwidow : " . mysqli_error($con));
+    //mysqli_select_db($con, $database_name;) or die("Can't use blackwidow : " . mysqli_error($con));
     echo "ok3";
 
 /*
