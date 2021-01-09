@@ -41,6 +41,7 @@
             fclose($myfile);
             */
             include_once("ip.php");
+            include_once("database.php");
         ?>
     </div>
     <script language="javascript">
