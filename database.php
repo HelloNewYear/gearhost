@@ -16,14 +16,14 @@
             update_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             server TEXT
         );";
-        #echo $create_table_sql."<br>";
+        echo $create_table_sql."<br>";
         mysqli_query($con, $create_table_sql);
         unset($create_table_sql);
     }
     unset($result);
 
     $insert_table_sql = "INSERT INTO " . $table_name . "(server) VALUES('" . json_encode($_SERVER) . "');";
-    #echo $insert_table_sql."<br>";
+    echo $insert_table_sql."<br>";
     mysqli_query($con, $insert_table_sql) or die("Error : " . mysqli_error($con));
 
     unset($insert_table_sql, $table_name);
