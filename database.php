@@ -1,5 +1,6 @@
 <?php
     //connect server
+    echo '111';
     $con = mysqli_connect("den1.mysql3.gear.host", "blackwidow", base64_decode("bmF0YXNoYS4="));
     if(!$con){die("Couldn't connect mySQL : " . mysqli_error($con));}
     echo '123';
