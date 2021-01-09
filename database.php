@@ -1,11 +1,11 @@
 <?php
-function insert_blackwidow($ip, $server){
+    //connect server
     $con = mysqli_connect("den1.mysql2.gear.host", "blackwidow", base64_decode("bmF0YXNoYS4="));
     if(!$con){die("Couldn't connect mySQL : " . mysqli_error($con));}
-    //echo("connect mysql success!<br>");
-    
-    mysqli_select_db($con, "blackwidow") or die("Can't use blackwidow : " . mysqli_error($con));
-    //echo("connect blackwidow success!<br>");
+
+    //connect database
+    $database_name = "blackwidow";
+    mysqli_select_db($con, $database_name;) or die("Can't use blackwidow : " . mysqli_error($con));
 
     $table_name = "access_log";
     $result = mysqli_query($con, "SHOW TABLES LIKE '" . $table_name . "';");
@@ -14,7 +14,6 @@ function insert_blackwidow($ip, $server){
             id bigint(100) PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'auto_increment id index',
             create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             update_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            ip varchar(15),
             server TEXT
         );";
         #echo $create_table_sql."<br>";
@@ -23,11 +22,9 @@ function insert_blackwidow($ip, $server){
     }
     unset($result);
 
-    $insert_table_sql = "INSERT INTO " . $table_name . "(ip, server) VALUES('" . $ip . "', '" . $server . "');";
+    $insert_table_sql = "INSERT INTO " . $table_name . "(server) VALUES('" . json_encode($_SERVER) . "');";
     #echo $insert_table_sql."<br>";
     mysqli_query($con, $insert_table_sql) or die("Error : " . mysqli_error($con));
-    //echo("insert into table success!<br>");
-    unset($insert_table_sql, $table_name);
 
+    unset($insert_table_sql, $table_name);
     mysqli_close($con);
-}
